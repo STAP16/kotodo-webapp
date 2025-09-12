@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  background-color: rgb(255, 255, 255);
+  font-family: "Roboto", sans-serif;
+}
+
+.container {
+  display: flex;
+  max-width: 100%;
+}
+
+.logo {
+  width: 100px;
+  position: fixed;
+  bottom: 0px;
+  right: 0;
+}
+
+.novigation {
+  position: fixed;
+  background: rgba(241, 237, 237, 0.901);
+  width: 70px;
+  height: 100%;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.header h1 {
+  text-align: center;
+}
+
+.page-logo {
+  width: 50px;
+  display: block;
+  margin: 0px;
+}
+
+.nav-tools {
+  position: relative;
+  display: flex;
+  margin-top: 100px;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-left: 8px;
+
+}
+
+.nav-tool{
+  padding: 10px;
+  margin-top: -10px;
+  width: 100%;
+}
+
+.nav-btn {
+  border: none;
+  background: inherit;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.nav-btn:hover {
+  background: rgb(204, 198, 198);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgb(163, 158, 158);
+  color: white;
+}
+
+.nav-btn.active {
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  background: rgba(154, 138, 138, 0.342);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.279);
+  color: white;
+}
+
+.freeze-elements {
+  position: freeze;
+}
+
+.page-content {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  min-height: 100vh;
+  margin-left: 80px; /* ширина навигации */
+  width: calc(100% - 80px); /* учитываем навигацию */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.modal-wrapper {
+  position: fixed;
+  inset: 0; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; 
+}
+
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5); /* затемнение фона */
+  cursor: pointer;
+}
+
+.modal-content {
+  position: relative;
+  background: #fff;
+  padding: 20px 24px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  z-index: 1001; /* выше оверлея */
+  min-width: 300px;
+  max-width: 600px;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* отступы между элементами */
+  width: 100%;
+}
+
+.modal-form h3 {
+  text-align: center;
+}
+
+.form-btns {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+
+}
+
+.btn-create {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  background: #c9c7eb;
+  color: white;
+  transition: background 0.2s ease;
+}
+
+.btn-create.active {
+  background: #4338ca;
+}
+
+.btn-cancel {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  background: #e5e7eb;
+  color: #111827;
+  transition: background 0.2s ease;
+}
+
+.btn-cancel:hover {
+  background: #d1d5db;
+}

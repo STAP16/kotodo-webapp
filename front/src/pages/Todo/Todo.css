@@ -1,0 +1,8 @@
+.todo_item {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.todo_item.removing {
+  opacity: 0;
+  transform: scale(0.95); /* слегка уменьшаем карточку */
+}

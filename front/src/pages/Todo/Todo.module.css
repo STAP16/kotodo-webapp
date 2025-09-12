@@ -1,0 +1,137 @@
+.create_task_btn {
+    position: fixed; /* фиксированное позиционирование относительно окна */
+    left: 0;         /* слева */
+    bottom: 25px;       /* снизу */
+    z-index: 1000;   /* чтобы была поверх остальных элементов */
+    margin-left: 100px;
+}
+
+/* Обёртка страницы */
+.todo_card_page {
+  display: flex;
+  flex-direction: column;      /* контент сверху вниз */
+  align-items: center;         /* центрируем по горизонтали */
+  padding: 24px;
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.card_section {
+  display: flex;
+  flex-direction: column;   
+  align-items: center;
+  padding: 16px;
+  gap: 12px;                   
+  width: 100%;
+  max-width: 800px;
+  border-radius: 12px;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+
+.todo_card_page h2 {
+    text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+
+.todo_item:hover {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  transform: translateY(-2px); /* лёгкий подъём */
+}
+
+.todo_item p {
+  margin: 0;
+  color: #333;
+  flex: 1;
+  padding-right: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Стиль чекбокса */
+.todo_item input[type="checkbox"] {
+  appearance: none; /* убираем стандартный стиль */
+  width: 22px;
+  height: 22px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-color: #fff;
+}
+
+.todo_item input[type="checkbox"]:checked {
+  background-color: #0000008d;
+  border-color: #0000007a;
+}
+
+.todo_item input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 12px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.todo_item input[type="checkbox"]:hover {
+  border-color: #888;
+}
+
+.todo_item.removing {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.todo_item {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.todo_item.removing {
+  opacity: 0;
+  transform: scale(0.95); /* слегка уменьшаем карточку */
+}
+
+.removing {
+  height: 0;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+}
+
+/* Появление карточки */
+.todo_item.entering {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.todo_item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  margin-bottom: 12px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  font-size: 1.1rem;
+  width: 100%;
+  max-width: 500px;
+  height: 80px;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: all 0.4s ease; /* чуть дольше для более заметной анимации */
+  opacity: 1;
+  transform: scale(1);
+}
