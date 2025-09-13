@@ -6,6 +6,7 @@ import Todo from './pages/Todo/Todo.jsx'
 import { useTelegramUser } from './hooks/useTelegramUser';
 import { useUserTasks } from './hooks/useUserTasks';
 import Modal from './pages/Todo/Modal.jsx'
+import Datepicker from './pages/Datepicker/Datepicker.jsx'
 
 
 
@@ -22,7 +23,7 @@ function App() {
 
 
   const { user, loading, error } = useTelegramUser(telegramUser);
-  const [activePage, setActivePage] = useState('todo');
+  const [activePage, setActivePage] = useState('datepicker');
   const handlePageChange = (pageId) => setActivePage(pageId);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const {tasks, setTasks} = useUserTasks(telegramUser.telegram_id);
@@ -67,7 +68,7 @@ function App() {
 
       <div className="page-content">
         {activePage === "home_page" && <Home />}
-        {activePage === "datepicker" && <h1>datepicker</h1>}
+        {activePage === "datepicker" && <Datepicker></Datepicker>}
         {activePage === "todo" && <Todo tasks={tasks} 
         deleteTask={deleteTask}
         setIsModalOpen={setIsModalOpen}/>}
