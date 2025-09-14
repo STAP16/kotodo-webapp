@@ -23,7 +23,7 @@ function App() {
 
 
   const { user, loading, error } = useTelegramUser(telegramUser);
-  const [activePage, setActivePage] = useState('datepicker');
+  const [activePage, setActivePage] = useState('home_page');
   const handlePageChange = (pageId) => setActivePage(pageId);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const {tasks, setTasks} = useUserTasks(telegramUser.telegram_id);
