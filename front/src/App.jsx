@@ -45,6 +45,7 @@ function App() {
     }
   };
 
+
   const deleteTask = async (id) => {
   try {
     const response = await fetch(`http://127.0.0.1:8000/delete_task/${id}`, {
@@ -61,6 +62,8 @@ function App() {
 };
 
 
+
+
   return (
     <div className='container'>
       <Logo />
@@ -68,7 +71,7 @@ function App() {
 
       <div className="page-content">
         {activePage === "home_page" && <Home />}
-        {activePage === "datepicker" && <Datepicker></Datepicker>}
+        {activePage === "datepicker" && <Datepicker telegramId={telegramUser.telegram_id}></Datepicker>}
         {activePage === "todo" && <Todo tasks={tasks} 
         deleteTask={deleteTask}
         setIsModalOpen={setIsModalOpen}/>}

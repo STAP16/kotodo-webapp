@@ -1,43 +1,127 @@
-.container {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    background-color: rgb(223, 196, 196);
-}
-
+/* Основной контейнер календаря */
 .date_container {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 8px;
+  gap: 10px; /* чуть меньше отступы */
+  padding: 16px;
+  background-color: #f9f9f9;
+  border-radius: 14px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  width: 80vw;   /* чуть меньше ширина */
+  max-width: 1000px;
+  margin: 20px auto;
 }
+
+/* Ячейки дней */
 .date_item {
-  background: #eee;
-  padding: 10px;
-  text-align: center;
-  border-radius: 6px;
-}
-.date_item:hover {
-  background: #bb8080;
-  padding: 10px;
-  text-align: center;
-  border-radius: 6px;
-}
-
-.date_days {
-    display: grid;
-    margin-bottom: 5px;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 8px;
-    background: #eee
-}
-
-.day_item {
-  background: #eee;
-  padding: 20px;
-  text-align: center;
-  border-right: 1px solid #ccc;
-  border-left: 1px solid #ccc;
   display: flex;
-  align-items: center; 
-  font-size: 14px;
+  justify-content: center;
+  align-items: center;
+  height: 60px; /* немного меньше */
+  font-size: 1.3rem; /* уменьшаем текст */
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s, transform 0.15s;
+}
+
+.date_item:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+/* Активные дни с задачами */
+.date_item_active {
+  background-color: #4f46e5;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+.date_item_active:hover {
+  background-color: #4338ca;
+}
+
+/* Заголовки дней недели */
+.date_days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* Дни недели */
+.day_item {
+  padding: 10px 0;
+  color: #777;
+  font-size: 1rem;
+}
+
+/* Заголовок месяца и кнопки */
+h2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.8rem; /* чуть меньше */
+  margin-bottom: 16px;
+  padding: 0 16px;
+}
+
+h2 button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+h2 button:hover {
+  color: #4f46e5;
+}
+
+/* Обёртка календаря */
+.calendar_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 0;
+  min-height: 100vh;
+  background-color: #fafafa;
+}
+
+
+/* Контейнер кнопок переключения месяца */
+.month_nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* расстояние между кнопками */
+  margin: 10px 0 20px 0;
+}
+
+/* Кнопки */
+.month_nav button {
+  background-color: #4f46e5; /* фиолетовая заливка */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.month_nav button:hover {
+  background-color: #4338ca;
+  transform: translateY(-2px);
+}
+
+.month_nav button:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
 }

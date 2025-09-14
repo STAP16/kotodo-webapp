@@ -36,3 +36,14 @@ class UsersTasks(Base):
 
     # связь с юзером
     user = relationship("User", back_populates="tasks")
+
+class UsersDays(Base):
+    __tablename__ = "days"
+
+    id = Column(Integer, primary_key=True)
+    description = Column(String, nullable=False)
+    telegram_id = Column(Integer, ForeignKey("users.telegram_id"), nullable=False)
+    day = Column(Integer, nullable=False)          
+    month = Column(Integer, nullable=False)         
+    year = Column(Integer, nullable=False)          
+

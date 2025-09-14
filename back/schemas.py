@@ -15,3 +15,20 @@ class TaskResponse(BaseModel):
     id: int
     telegram_id: int
     description: str
+
+# Модель для запроса (создание новой задачи)
+class UsersDaysCreate(BaseModel):
+    telegramId: int
+    currentMonth: int
+    currentYear: int
+    day: int
+    description: str
+
+# Модель для ответа (вывод задачи)
+class UsersDaysResponse(BaseModel):
+    id: int 
+    telegramId: int
+    currentMonth: int
+    currentYear: int
+    day: int
+    description: str

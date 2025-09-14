@@ -2,10 +2,10 @@ from fastapi import FastAPI, HTTPException
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.future import select
 from tables import Base, UsersTasks
-from schemas import TelegramUser, TaskCreate, TaskResponse
-from tables import User
+from schemas import TaskCreate, TaskResponse, UsersDaysCreate, UsersDaysResponse
+from tables import User, UsersDays
 from fastapi.middleware.cors import CORSMiddleware
-
+from typing import List
 
 
 DATABASE_URL = "sqlite+aiosqlite:///./test.db"  
@@ -112,6 +112,63 @@ async def get_tasks(telegram_id: int):
 async def delete_task(task_id: int):
     async with async_session as session:
         result = await session.execute(select(UsersTasks).where(UsersTasks.id == task_id))
+        task = result.scalar_one_or_none()
+
+        if not task:
+            raise HTTPException(status_code=404, detail="Задача не найдена")
+
+        await session.delete(task)
+        await session.commit()
+        return {"message": "Задача удалена"}
+    
+
+@app.post("/days/", response_model=UsersDaysResponse)
+async def create_day(day: UsersDaysCreate):
+    async with async_session as session:
+        new_day = UsersDays(
+            telegram_id=day.telegramId,
+            day=day.day,
+            month=day.currentMonth,
+            year=day.currentYear,
+            description=day.description
+        )
+
+        session.add(new_day)
+        await session.commit()
+        await session.refresh(new_day)
+
+    return UsersDaysResponse(
+        id=new_day.id,
+        telegramId=new_day.telegram_id,
+        day=new_day.day,
+        currentMonth=new_day.month,
+        currentYear=new_day.year,
+        description=new_day.description
+    )
+
+@app.get("/days/{telegram_id}", response_model=List[UsersDaysResponse])
+async def get_user_days(telegram_id: int):
+    # делаем асинхронный запрос к базе
+    async with async_session as session:
+        result = await session.execute(select(UsersDays).where(UsersDays.telegram_id == telegram_id))
+        tasks = result.scalars().all()
+
+        return [
+            UsersDaysResponse(
+                id=task.id,
+                telegramId=task.telegram_id,
+                day=task.day,
+                currentMonth=task.month,
+                currentYear=task.year,
+                description=task.description
+            )
+            for task in tasks
+        ]
+
+@app.delete("/days/{day_id}")
+async def delete_day(day_id):
+    async with async_session as session:
+        result = await session.execute(select(UsersDays).where(UsersDays.id == day_id))
         task = result.scalar_one_or_none()
 
         if not task:
